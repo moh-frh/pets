@@ -6,19 +6,24 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.example.demo.entity.Matricule;
 import com.example.demo.entity.Pet;
+import com.example.demo.repository.MatriculeRepository;
 import com.example.demo.repository.PetRepository;
 
 @Configuration
-public class PetConfig {
+public class MatriculeConfig {
+	
 	@Bean
-	CommandLineRunner commandLineRunnerPet(PetRepository repository) {
+	CommandLineRunner commandLineRunnerMatricule(MatriculeRepository repository) {
 		return args -> {
-//			Pet p1 = new Pet("pet1", "description1", "code1");
-//			Pet p2 = new Pet("pet2", "description2", "code2");
+			
+//			Pet p = new Pet("petX", "descriptionX", "codeX");
+//			
+//			Matricule m1 = new Matricule("code1", p);
 //			
 //			repository.saveAll(
-//					List.of(p1, p2)
+//					List.of(m1)
 //			);
 		};
 	}

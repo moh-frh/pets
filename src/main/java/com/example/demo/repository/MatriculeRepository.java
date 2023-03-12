@@ -4,13 +4,10 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 
-import com.example.demo.entity.Category;
+import com.example.demo.entity.Matricule;
 
-@Repository
-public interface CategoryRepository extends JpaRepository<Category, Long> {
-	
+public interface MatriculeRepository extends JpaRepository<Matricule, Long>{
 //	native query
 //	@Query(
 //			value = "select * from category c where c.category_title = ?1",
@@ -19,7 +16,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 	
 	
 	// JPQL
-	@Query("SELECT c FROM Category c WHERE c.title = ?1")
-	Optional<Category> findCategoryByName(String title); 
-
+	@Query("SELECT m FROM Matricule m WHERE m.code = ?1")
+	Optional<Matricule> findMatriculeByName(String code); 
 }

@@ -1,12 +1,22 @@
 package com.example.demo.entity;
 
+import java.util.List;
+
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +24,17 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@AttributeOverrides({
+	@AttributeOverride(
+			name = "title",
+			column = @Column(name = "category_title")
+	),
+	@AttributeOverride(
+			name = "description",
+			column = @Column(name = "category_description")
+	)
+})
 public class Category {
 	
 	@Id
@@ -22,6 +43,13 @@ public class Category {
 	private Long id;
 	private String title;
 	private String description;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	//	, fetch = FetchType.LAZY
+	// referencedColumnName is id of category table
+	@JoinColumn(name = "category_id", referencedColumnName = "id")
+	private List<Pet> pets;
+	
 	
 	public Category(String title, String description) {
 		this.title = title;
