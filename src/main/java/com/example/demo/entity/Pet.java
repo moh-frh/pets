@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -44,7 +45,7 @@ public class Pet {
 	private String code;
 	
 	
-	@OneToOne(mappedBy = "pet")
+	@OneToOne(mappedBy = "pet", cascade = CascadeType.ALL)
 	private Matricule matricule;
 	
 //	@ManyToOne

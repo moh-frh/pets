@@ -38,9 +38,10 @@ public class PetController {
 	@PutMapping(path = "{petId}")
 	public void updatePet(
 			@PathVariable("petId") Long petId,
-			@RequestParam(required = false) String name
+			@RequestBody(required = false) Pet pet
 			) {
-		petService.updatePet(petId, name);
+		System.out.println("::controller:: name : "+pet.getName());
+		petService.updatePet(petId, pet);
 	}
 
 }
