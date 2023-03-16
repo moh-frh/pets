@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.entity.Pet;
+import com.example.demo.exception.PetNotFoundException;
 import com.example.demo.service.PetService;
 
 @RestController
@@ -21,7 +22,15 @@ public class PetController {
 	@GetMapping
 	public List<Pet> getPets() {
 //		LOGGER.info("azertyui");
-		return petService.getPets();
+		List<Pet> pets = petService.getPets();
+		
+		if(pets.size() == 0) {
+			throw new PetNotFoundException("Pets is empty");
+		}
+		
+		return pets;
+		
+		
 	}
 	
 	@PostMapping
