@@ -15,12 +15,12 @@ public class CategoryConfig {
 	@Bean
 	CommandLineRunner commandLineRunnerCategory(CategoryRepository repository) {
 		return args -> {
-			Category c1 = new Category("category1", "description1");
-			Category c2 = new Category("category2", "description2");
-			
-			repository.saveAll(
-					List.of(c1, c2)
-			);
+//			Category c1 = new Category("category1", "description1");
+//			Category c2 = new Category("category2", "description2");
+//			
+//			repository.saveAll(
+//					List.of(c1, c2)
+//			);
 		};
 	}
 
