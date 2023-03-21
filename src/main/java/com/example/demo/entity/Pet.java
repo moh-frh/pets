@@ -3,6 +3,7 @@ package com.example.demo.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +13,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -48,18 +51,22 @@ public class Pet {
 	@OneToOne(mappedBy = "pet", cascade = CascadeType.ALL)
 	private Matricule matricule;
 	
-//	@ManyToOne
-//	@JoinColumn(
-//			name = "category_id",
-//			referencedColumnName = "id"
-//	)
-//	private Category category;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(
+			name = "category_id",
+			referencedColumnName = "id"
+	)
+	private Category category;
+	
+//	@Column(name = "category_id") // specify the column name in the database
+//    private Long categoryId;
 	
 	
-	public Pet(String name, String description, String code) {
+	public Pet(String name, String description, String code, Long categoryId) {
 		this.name = name;
 		this.description = description;
 		this.code = code;
+//		this.categoryId = categoryId;
 	}
 	
 }

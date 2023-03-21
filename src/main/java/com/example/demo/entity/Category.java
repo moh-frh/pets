@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -44,9 +46,10 @@ public class Category {
 	private String title;
 	private String description;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	//	, fetch = FetchType.LAZY
 	// referencedColumnName is id of category table
+	@JsonIgnore
 	@JoinColumn(name = "category_id", referencedColumnName = "id")
 	private List<Pet> pets;
 	

@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.entity.Category;
 import com.example.demo.entity.Pet;
 
 public interface PetRepository extends JpaRepository<Pet, Long> {
@@ -34,5 +35,9 @@ public interface PetRepository extends JpaRepository<Pet, Long> {
 //	@Transactional
 //	@Query(value = "UPDATE pet set description = ?1 where name = ?2", nativeQuery = true)
 //	int updatePetDescriptionByName(String name, String description);
+	
+	// JPQL
+		@Query("SELECT c FROM Category c WHERE c.id = ?1")
+		Optional<Category> findCategoryById(Long id); 
 	
 }
